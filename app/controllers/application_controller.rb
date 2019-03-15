@@ -8,21 +8,19 @@ class ApplicationController < Sinatra::Base
 
     enable :sessons
     set :session_secret, "secret"
-
   end
 
   get '/' do 
     erb :index
   end
 
-  helpers do 
+  helpers do
     def logged_in?
-      !!session[:user_id]
+      !!current_user
     end
 
     def current_user
-      User.find(:user_id)
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   end
-
 end

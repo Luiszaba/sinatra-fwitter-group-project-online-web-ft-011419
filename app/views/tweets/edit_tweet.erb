@@ -1,1 +1,10 @@
 <!DOCTYPE html>
+
+<h1>Changed Your Mind?<h1>
+
+<form method="post" action="/tweets/<%=@tweet.id%>">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <p><%=@tweet.content%></p>
+  <input type="text" name="content">
+  <input type="submit" value="Edit Tweet" id="submit">
+</form>
